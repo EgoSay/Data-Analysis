@@ -25,11 +25,19 @@ print("\n=====# 创建数组几种方法=======\n")
 a2 = np.array([0, 1, 2, 3, 4])
 b2 = np.array((0, 1, 2, 3, 4))
 c2 = np.arange(5)
-d2 = np.linspace(0, 2 * np.pi, 5)
+d2 = np.linspace(0, 2 * np.pi, 5)   # linspace函数在指定的时间间隔内返回均匀间隔的数字
+e2 = np.empty((2, 3))               # empty函数创建一个数组。它的初始内容是随机的，取决于内存的状态
+f2 = np.full((2, 2), 3)             # full函数创建一个填充给定值的n * n数组。
+g2 = np.eye(3, 3)                   # eye函数可以创建一个n * n矩阵，对角线为1s，其他为0
+h2 = np.random.random((2, 2))       # 生成随机数组
 print(a2)
 print(b2)
 print(c2)
 print(d2)
+print(e2)
+print(f2)
+print(g2)
+print(h2)
 
 print("\n=========# 多维数组操作================\n")
 multidimensional_arrays = np.array([[11, 12, 13, 14, 15],
