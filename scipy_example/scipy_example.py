@@ -24,7 +24,7 @@ def func(p, x):
     return k * x + b
 
 
-# 偏差函数：x,y都是列表:这里的x,y更上面的Xi,Yi中是一一对应的
+# 偏差函数：x,y都是列表:这里的x,y跟上面的Xi,Yi中是一一对应的
 def error(p, x, y):
     return func(p, x) - y
 

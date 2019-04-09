@@ -34,7 +34,7 @@ print("\n================\n")
 # the vector w added to each column. Gives the following matrix:
 # [[ 5  6  7]
 #  [ 9 10 11]]
-print((x.T + w).T)
+print((x.T + w).T)  # T表示转置
 # Another solution is to reshape w to be a column vector of shape (2, 1);
 # we can then broadcast it directly against x to produce the same
 print(x + np.reshape(w, (2, 1)))
