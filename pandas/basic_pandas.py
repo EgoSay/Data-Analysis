@@ -12,7 +12,7 @@ import pandas as pd
 对象的创建
 """
 # 通过传入一些值的列表来创建一个Series， Pandas会自动创建一个默认的整数索引
-s = pd.Series([1, 3, 5, np.nan, 7])
+s = pd.Series([1, 3, 5, np.nan, 6, 8])
 # 通过传递带有日期时间索引和带标签列的NumPy数组来创建DataFrame
 dates = pd.date_range('20190701', periods=6)
 df1 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
@@ -92,4 +92,31 @@ df4.dropna(how='any')
 df4.fillna(value=5)
 # 获取值为na的掩码(True/False)
 pd.isna(df4)
+
+"""
+操作
+"""
+# 统计
+df1.mean()   # 每一列的平均值
+df1.mean(1)  # 每一行的平均值
+# 使用具有不同维度且需要对齐的对象进行操作。 此外，Pandas会自动沿指定维度进行广播
+s2 = pd.Series([1, 3, 5, np.nan, 6, 8], index=dates).shift(2)   # shift方法对数据进行移动
+# axis表示轴，轴用来为超过一维的数组定义的属性，二维数据拥有两个轴：第0轴沿着行方向垂直往下延伸，第1轴沿着列的方向水平延伸。
+df1.sub(s2, axis='index')
+
+"""
+应用
+"""
+# 将函数应用于数据
+df1.apply(np.cumsum)
+df1.apply(lambda x: x.max() - x.min())
+
+# 直方图化
+s3 = pd.Series(np.random.randint(0, 7, size=10))
+s3.value_counts()
+
+# 字符串方法
+s4 = pd.Series(['A', 'B', 'C', 'Aaba', 'Baca', np.nan, 'CABA', 'dog', 'cat'])
+s4.str.lower()
+
 
