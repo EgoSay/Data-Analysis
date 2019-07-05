@@ -43,4 +43,42 @@ df1 = pd.DataFrame({'A2': ['foo', 'bar', 'foo', 'bar',
                    'C2': np.random.randn(8), })
 df1.groupby(['A2', 'B2']).sum()
 
+"""
+重塑(Reshaping)
+"""
+# 堆叠(Stack)
+tuples = list(zip(*[['bar', 'bar', 'baz', 'baz',
+                     'bar', 'bar', 'baz', 'baz'],
+                    ['one', 'two', 'one', 'two',
+                     'one', 'two', 'one', 'two']]))
+index = pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
+df2 = pd.DataFrame(np.random.randn(8, 2), index=index, columns=['A', 'B'])
+# stack()方法压缩DataFrame的列
+stacked = df2[:4].stack()
+#  stack()的逆操作是unstack()，默认情况下取消最后压缩的那个级别
+stacked.unstack(1)
 
+"""
+数据透视表(PivotTables)
+"""
+
+"""
+时间序列
+"""
+rng = pd.date_range('7/5/2019 00:00', periods=5, freq='D')
+ts = pd.Series(np.random.randn(len(rng)), rng)
+ts_utc = ts.tz_localize('UTC')
+# 转换为另一个时区
+ts_utc.tz_convert('US/Eastern')
+ts.to_period()
+
+"""
+分类
+"""
+df3 = pd.DataFrame({"id": [1, 2, 3, 4, 5, 6], "raw_grade": ['a', 'b', 'b', 'a', 'a', 'e']})
+df3["grade"] = df3["raw_grade"].astype("category")
+df3["grade"].cat.categories = ["very good", "good", "very bad"]
+# 对categories重新排序并同时添加缺少的category(Series.cat下的方法默认返回一个新的Series)
+df3["grade"] = df3["grade"].cat.set_categories(["very bad", "bad", "medium", "good", "very good"])
+# 按分好类的列分组(groupby)可以显示空categories
+df3.groupby("grade").size()
