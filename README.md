@@ -1,6 +1,6 @@
 # Python data analysis and mining practice 🐍
 ## Introduction📖
-> There are many beautiful usage in python, such as:
+> Including:
 > - [numpy](#numpy练习)
 > - [panda](#pandas练习)
 > - [scipy](#scipy练习)
@@ -20,6 +20,16 @@
 - [异常值分析]()
 - [一致性分析]()
 ### - 数据特征分析
+- [分布分析]()
+    1. 定量数据的分布分析
+        >一般按照以下步骤进行：<p>
+        1）求极差<p>
+        2）决定组距与组数
+        3）决定分点
+        4）列出频率分布表
+        5）绘制频率分布直方图
+        
+- [对比分析]()
 ### - Python主要数据探索函数
 
 ## 5. 数据预处理
