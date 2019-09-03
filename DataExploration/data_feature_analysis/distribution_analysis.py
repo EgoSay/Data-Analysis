@@ -5,9 +5,11 @@
 # @Date    : 2019/8/28 上午10:33
 # @IDE     : PyCharm
 """分布分析"""
+import random
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import colors
 
 
 def distribution_analysis_of_quantitative_data(data):
@@ -34,28 +36,26 @@ def distribution_analysis_of_quantitative_data(data):
     # 分组， 取组距为500
     group_num = int(data_range / 500) + 1
     # 决定分点， 即分布区间
-    point_list = [0 + i * 500 for i in range(group_num + 1)]
-    plt.legend()
+    point_list = [0 + i * 500 for i in range(group_num + 2)]
+    # plt.legend()
     # TODO 调整优化图表效果
-    # 绘制频率分布直方图
-    # plt.xlim(point_list[0], point_list[-1])
-    plt.figure()
-    plt.title("Probability-distribution")
+    # 绘制频次分布直方图
+    plt.xlim(point_list[0], point_list[-1])
+    plt.title("季度销售额的频率分布直方图，$\sigma={0}$".format(df.std()[0]))
     plt.xlabel('日销售额/元')
     plt.ylabel('频率')
     # draw_data = sorted([v[0] for v in df.values.tolist()])
     draw_data = [v[0] for v in df.values.tolist()]
-    # colors = [plt.cm.Spectral(i / float(len(draw_data) - 1)) for i in range(len(draw_data))]
-    # 频率分布normed=True，频次分布normed=False
-    # labels = [("{0}~{1}".format(point_list[i], point_list[i + 1]) for i in range(group_num))]
-    # plt.xticks(point_list, labels)
-    prob, left, rectangle = plt.hist(draw_data, point_list, density=False, stacked=True)
-    for x, y in zip(left, prob):
+    n_val, bins, patches = plt.hist(draw_data, point_list, density=False, stacked=True)
+    fracs = n_val / n_val.max()
+    norm = colors.Normalize(fracs.min(), fracs.max())
+    for x, y, thisfrac, thispatch in zip(bins, n_val, fracs, patches):
         # 字体上边文字
-        # 频率分布数据 normed=True
-        plt.text(x, y, y)
-        # 频次分布数据 normed=False
+        plt.text(x + 250, y + 1.5, y, ha='center', va='center', fontsize=12)
         # plt.text(x + bins_interval / 2, y + 0.25, '%.2f' % y, ha='center', va='top')
+        color = plt.cm.viridis(norm(thisfrac))
+        thispatch.set_facecolor(color)
+    #
     plt.show()
 
 
