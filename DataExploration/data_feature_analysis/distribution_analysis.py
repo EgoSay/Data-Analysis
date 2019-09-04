@@ -5,8 +5,8 @@
 # @Date    : 2019/8/28 上午10:33
 # @IDE     : PyCharm
 """分布分析"""
-import random
-
+import math
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors
@@ -33,9 +33,9 @@ def distribution_analysis_of_quantitative_data(data):
 
     # 求极差=最大值 - 最小值
     data_range = df.max()[0] - df.min()[0]
-    # 分组， 取组距为500
-    group_num = int(data_range / 500) + 1
-    # 决定分点， 即分布区间
+    # 分组， 取组距为500， 划分区间数为7
+    group_num = math.ceil(data_range / 500)
+    # 决定分点， 即分布区间, 最大值为4065.2, 所以取区间为0～4500， 9个区间
     point_list = [0 + i * 500 for i in range(group_num + 2)]
     # plt.legend()
     # TODO 调整优化图表效果
@@ -59,16 +59,32 @@ def distribution_analysis_of_quantitative_data(data):
     plt.show()
 
 
-def distribution_analysis_of_qualitative_data(df):
+def distribution_analysis_of_qualitative_data(data):
     """
     定性数据的分布分析
-    :param data:
+    :param data: Pandas读取的数据源
     :return:
     """
+    # 定义字典存储每个菜品的销售量
+    sale_volume = dict()
+    dish_types = data.columns.tolist()
+    df = pd.DataFrame(data)
+    for dish in dish_types:
+        sale_volume.setdefault(dish, df[dish].sum())
+    labels = [k + "销售额为:" + str(v) for k, v in sale_volume.items()]
+    fig1, ax = plt.subplots()
+    ax.pie(list(sale_volume.values()), labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    ax.set_title("这段时间内每个菜品的销售量分布")
+    plt.show()
 
 
 if __name__ == '__main__':
     # 读取数据， 指定 "日期列" 为索引列
+    # 定量数据
     catering_sale = '../data/catering_sale.xls'
-    data = pd.read_excel(catering_sale, index_col=u'日期')
-    distribution_analysis_of_quantitative_data(data)
+    quantitative_data = pd.read_excel(catering_sale, index_col=u'日期')
+    # distribution_analysis_of_quantitative_data(quantitative_data)
+
+    # 定性数据
+    qualitative_data = pd.read_excel('../data/catering_sale_all.xls', index_col=u'日期')
+    distribution_analysis_of_qualitative_data(qualitative_data)
