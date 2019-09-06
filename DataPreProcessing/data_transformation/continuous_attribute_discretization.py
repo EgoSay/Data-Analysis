@@ -46,7 +46,7 @@ def cluster_plot(d, k):
 
     plt.figure(figsize=(8, 3))
     for j in range(0, k):
-        plt.plot(data[d == j], [j for i in d[d == j]], 'o')
+        plt.plot(data[d == j], [i for i in d[d == j]], 'o')
 
     plt.ylim(-0.5, k-0.5)
     return plt

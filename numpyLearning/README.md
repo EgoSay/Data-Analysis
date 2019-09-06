@@ -1,4 +1,4 @@
-![Numpy](numpy.svg)
+![Numpy](numpy.png)
 ## Introduction📖
 NumPy is the fundamental package needed for scientific computing with Python
 - **Website:** https://www.numpy.org

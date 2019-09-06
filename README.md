@@ -7,7 +7,7 @@
 > - [DataExpolation](#数据探索)
 > - [DataPreProcessing](#数据预处理)
 
-## 1. numpy练习
+## 1. [numpy练习](numpyLearning/README.md)
 
 ## 2. pandas练习
 
