@@ -43,6 +43,14 @@
 - [周期性分析](data_feature_analysis/periodic_analysis.py)
     >周期性分析是探索某个变量是否随着时间变化而呈现出某种周期变化趋势
 - [贡献度分析](data_feature_analysis/contribution_analysis.py)
-    >又称帕累托分析， 原理是帕累托法则， 即我们熟知的二八定律
+    >又称帕累托分析， 原理是帕累托法则， 即我们熟知的二八定律<p>
     帕累托法则: [百度百科](https://dwz.cn/YRTb7MUr)
-### - Python主要数据探索函数
+- [相关性分析](data_feature_analysis/correlation_analysis.py)
+    >相关性分析: 分析连续变量之间线性相关程度的强弱<p>
+    判断两个变量是否具有线性相关关系最直观的方法是直接绘制散点图<p>
+    考察多个变量间的相关关系时， 可以绘制散点图矩阵
+    
+    >计算相关系数：[链接](https://blog.csdn.net/zhaozhn5/article/details/78392220)
+    > 1. Pearson相关系数: [维基百科](https://dwz.cn/af4FsnpN)
+    > 2. Spearman轶相关系数: [百度百科](https://dwz.cn/iYAvJGyU)
+### - [Python主要数据探索函数](../Python主要数据探索函数.md)
