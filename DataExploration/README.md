@@ -53,4 +53,4 @@
     >计算相关系数：[链接](https://blog.csdn.net/zhaozhn5/article/details/78392220)
     > 1. Pearson相关系数: [维基百科](https://dwz.cn/af4FsnpN)
     > 2. Spearman轶相关系数: [百度百科](https://dwz.cn/iYAvJGyU)
-### - [Python主要数据探索函数](../Python主要数据探索函数.md)
+### - [Python主要数据探索函数](Python主要数据探索函数.md)
